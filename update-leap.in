@@ -107,8 +107,8 @@ $QUIET   = 1 if defined $opt{q};
 $SYSLOG  = 1 if defined $opt{s};
 $TOTERM  = 1 if defined $opt{t};
 
-$SSL_OPTS{SSL_ca_file} = $opt{C} if (defined($opt{C}));
-$SSL_OPTS{SSL_ca_path} = $opt{D} if (defined($opt{D}));
+$SSL_OPTS{SSL_ca_file} = $opt{C} if defined $opt{C};
+$SSL_OPTS{SSL_ca_path} = $opt{D} if defined $opt{D};
 
 ###############
 ## START MAIN
