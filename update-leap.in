@@ -301,6 +301,13 @@ sub retrieve_file {
 	return 1;
     } 
     else {
+	logger(LOG_DEBUG, "Failed: $reply->{status} $reply->{content}");
+        # Don't bother retrying if cert validation fails
+        if ($reply->{content} =~ /.*certificate verify failed$/) {
+            log_fatal(LOG_ERR, "Cerfificate verification failed");
+        }
+
+        logger(LOG_ERR, "Failed: $reply->{status} $reply->{content}");
 	close $fh;
 	return 0;
     }
